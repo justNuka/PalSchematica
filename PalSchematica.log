@@ -1,20 +1,7 @@
-[2026-07-19 00:02:41] PalSchematica log started
-[2026-07-19 00:02:41] Loaded successfully - Phase 8 library manager
-[2026-07-19 00:02:41] F1 refresh/list | F2 previous | F3 next | F4 load | F5 destroy preview | F6 preview | F7 details | F8 delete (double confirmation) | F9 watcher
-[2026-07-19 00:02:41] Dedicated log file: D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/PalSchematica.log
-[2026-07-19 00:02:41] Library refreshed: 0 .palschem file(s)
-[2026-07-19 00:02:41] SCHEMATIC LIBRARY IS EMPTY
-[2026-07-19 00:03:50] Library refresh requested
-[2026-07-19 00:03:55] Library refreshed: 0 .palschem file(s)
-[2026-07-19 00:03:55] SCHEMATIC LIBRARY IS EMPTY
-[2026-07-19 00:04:07] Library refresh requested
-[2026-07-19 00:04:12] Library refreshed: 0 .palschem file(s)
-[2026-07-19 00:04:12] SCHEMATIC LIBRARY IS EMPTY
-[2026-07-19 00:04:23] Library refresh requested
-[2026-07-19 00:04:28] Library refreshed: 0 .palschem file(s)
-[2026-07-19 00:04:28] SCHEMATIC LIBRARY IS EMPTY
-[2026-07-19 00:05:04] Selected schematic preview requested
-[2026-07-19 00:05:04] No selected schematic is loaded. Use F1/F2/F3/F4 first.
-[2026-07-19 00:05:05] No schematic selected
-[2026-07-19 00:05:06] Full schematic preview destruction requested
-[2026-07-19 00:05:06] Full schematic preview destroyed: 0 actor(s)
+[2026-07-19 00:15:37] PalSchematica log started
+[2026-07-19 00:15:37] Loaded successfully - Phase 8B compact library manager
+[2026-07-19 00:15:37] F10 library/select next | F6 show/hide preview | F8 delete selected (double confirmation)
+[2026-07-19 00:15:37] Official schematic directory: PalSchematica/Schematics
+[2026-07-19 00:15:37] Files placed beside enabled.txt are intentionally ignored.
+[2026-07-19 00:15:37] Dedicated log file: D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/PalSchematica.log
+[2026-07-19 00:15:37] Startup library refresh failed: Missing library index: D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Schematics/index.txt
