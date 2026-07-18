@@ -1,76 +1,20 @@
-[2026-07-18 23:43:11] PalSchematica log started
-[2026-07-18 23:43:11] Loaded successfully (F5: destroy full preview, F6: spawn full schematic, F7: load .palschem, F8: actor dump, F9: watcher)
-[2026-07-18 23:43:11] Mesh catalog loaded with 18 known build class(es)
-[2026-07-18 23:43:11] Dedicated log file: D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/PalSchematica.log
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_DoorWall_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_DoorWall_C_2147470099
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_DoorWall_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_DoorWall_C_2147470073
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_Foundation_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Foundation_C_2147470052
-[2026-07-18 23:43:35] Last real wooden foundation reference updated: BP_BuildObject_Wood_Foundation_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Foundation_C_2147470052
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_Foundation_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Foundation_C_2147470036
-[2026-07-18 23:43:35] Last real wooden foundation reference updated: BP_BuildObject_Wood_Foundation_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Foundation_C_2147470036
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_Foundation_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Foundation_C_2147470024
-[2026-07-18 23:43:35] Last real wooden foundation reference updated: BP_BuildObject_Wood_Foundation_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Foundation_C_2147470024
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_Foundation_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Foundation_C_2147470012
-[2026-07-18 23:43:35] Last real wooden foundation reference updated: BP_BuildObject_Wood_Foundation_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Foundation_C_2147470012
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_Foundation_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Foundation_C_2147470000
-[2026-07-18 23:43:35] Last real wooden foundation reference updated: BP_BuildObject_Wood_Foundation_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Foundation_C_2147470000
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_Foundation_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Foundation_C_2147469988
-[2026-07-18 23:43:35] Last real wooden foundation reference updated: BP_BuildObject_Wood_Foundation_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Foundation_C_2147469988
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_SlopedRoofCorner_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_SlopedRoofCorner_C_2147469976
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_PyramidRoof_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_PyramidRoof_C_2147469960
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_SlopedRoofCornerReverse_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_SlopedRoofCornerReverse_C_2147469944
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_SlopedRoofCornerReverse_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_SlopedRoofCornerReverse_C_2147469928
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_WallGate_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_WallGate_C_2147469916
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_WallGate_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_WallGate_C_2147469899
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_Pillar_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Pillar_C_2147469885
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_Stair_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Stair_C_2147469871
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_Stair_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Stair_C_2147469855
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_Stair_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Stair_C_2147469843
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_SlantedRoof_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_SlantedRoof_C_2147469831
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_WindowWall_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_WindowWall_C_2147469815
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_WindowWall_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_WindowWall_C_2147469799
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_TriangleWall_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_TriangleWall_C_2147469789
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_TriangleWall_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_TriangleWall_C_2147469773
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_TriangleWall_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_TriangleWall_C_2147469761
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_TriangleWall_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_TriangleWall_C_2147469751
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_DiagonalWall_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_DiagonalWall_C_2147469741
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_DiagonalWall_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_DiagonalWall_C_2147469725
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_TriangleRoof_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_TriangleRoof_C_2147469713
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_TriangleRoof_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_TriangleRoof_C_2147469697
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_TriangleRoof_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_TriangleRoof_C_2147469685
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_TriangleStairsCorner_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_TriangleStairsCorner_C_2147469673
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_Roof_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Roof_C_2147469657
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_Roof_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Roof_C_2147469641
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_Roof_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Roof_C_2147469629
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_TriangleWallReverse_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_TriangleWallReverse_C_2147469617
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_TriangleWallReverse_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_TriangleWallReverse_C_2147469600
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_TriangleWallReverse_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_TriangleWallReverse_C_2147469588
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_TriangleWallReverse_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_TriangleWallReverse_C_2147469576
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_Wall_V2_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Wall_V2_C_2147469564
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_Wall_V2_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Wall_V2_C_2147469548
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_Wall_V2_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Wall_V2_C_2147469536
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_Wall_V2_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Wall_V2_C_2147469524
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_Fence_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Fence_C_2147469512
-[2026-07-18 23:43:35] New build-like actor: BP_BuildObject_Wood_Fence_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_BuildObject_Wood_Fence_C_2147469501
-[2026-07-18 23:43:48] Schematic load requested: wood-test-base.palschem
-[2026-07-18 23:43:48] Schematic loaded: D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Schematics/wood-test-base.palschem
-[2026-07-18 23:43:48] Name: Wood test base | pieces: 44 | format version: 1
-[2026-07-18 23:43:48] First piece: BP_BuildObject_Wood_DoorWall_C | relative location: X=-200.000 Y=1200.000 Z=0.000 | relative yaw=-180.000
-[2026-07-18 23:43:48] Schematic ready. Press F6 to display the complete neutral preview.
-[2026-07-18 23:43:51] Full schematic preview requested
-[2026-07-18 23:43:51] Player resolved: BP_Player_Female_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_Player_Female_C_2147480781
-[2026-07-18 23:43:51] Full preview anchor | X=-361624.009 Y=200154.098 Z=-2045.261 | Yaw=-87.355
-[2026-07-18 23:43:51] FULL SCHEMATIC PREVIEW CREATED | pieces=44 spawnedMeshes=46 skippedPieces=0 failedMeshes=0
-[2026-07-18 23:44:00] Full schematic preview destruction requested
-[2026-07-18 23:44:00] Full schematic preview destroyed: 46 actor(s)
-[2026-07-18 23:44:04] Schematic load requested: wood-test-base.palschem
-[2026-07-18 23:44:04] Schematic loaded: D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Schematics/wood-test-base.palschem
-[2026-07-18 23:44:04] Name: Wood test base | pieces: 44 | format version: 1
-[2026-07-18 23:44:04] First piece: BP_BuildObject_Wood_DoorWall_C | relative location: X=-200.000 Y=1200.000 Z=0.000 | relative yaw=-180.000
-[2026-07-18 23:44:04] Schematic ready. Press F6 to display the complete neutral preview.
-[2026-07-18 23:44:04] Full schematic preview requested
-[2026-07-18 23:44:04] Player resolved: BP_Player_Female_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_Player_Female_C_2147480781
-[2026-07-18 23:44:04] Full preview anchor | X=-361635.556 Y=199471.783 Z=-2045.261 | Yaw=-9.243
-[2026-07-18 23:44:04] FULL SCHEMATIC PREVIEW CREATED | pieces=44 spawnedMeshes=46 skippedPieces=0 failedMeshes=0
-[2026-07-18 23:44:18] Full schematic preview destruction requested
-[2026-07-18 23:44:18] Full schematic preview destroyed: 46 actor(s)
+[2026-07-19 00:02:41] PalSchematica log started
+[2026-07-19 00:02:41] Loaded successfully - Phase 8 library manager
+[2026-07-19 00:02:41] F1 refresh/list | F2 previous | F3 next | F4 load | F5 destroy preview | F6 preview | F7 details | F8 delete (double confirmation) | F9 watcher
+[2026-07-19 00:02:41] Dedicated log file: D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/PalSchematica.log
+[2026-07-19 00:02:41] Library refreshed: 0 .palschem file(s)
+[2026-07-19 00:02:41] SCHEMATIC LIBRARY IS EMPTY
+[2026-07-19 00:03:50] Library refresh requested
+[2026-07-19 00:03:55] Library refreshed: 0 .palschem file(s)
+[2026-07-19 00:03:55] SCHEMATIC LIBRARY IS EMPTY
+[2026-07-19 00:04:07] Library refresh requested
+[2026-07-19 00:04:12] Library refreshed: 0 .palschem file(s)
+[2026-07-19 00:04:12] SCHEMATIC LIBRARY IS EMPTY
+[2026-07-19 00:04:23] Library refresh requested
+[2026-07-19 00:04:28] Library refreshed: 0 .palschem file(s)
+[2026-07-19 00:04:28] SCHEMATIC LIBRARY IS EMPTY
+[2026-07-19 00:05:04] Selected schematic preview requested
+[2026-07-19 00:05:04] No selected schematic is loaded. Use F1/F2/F3/F4 first.
+[2026-07-19 00:05:05] No schematic selected
+[2026-07-19 00:05:06] Full schematic preview destruction requested
+[2026-07-19 00:05:06] Full schematic preview destroyed: 0 actor(s)

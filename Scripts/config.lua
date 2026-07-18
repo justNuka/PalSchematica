@@ -5,6 +5,10 @@ return {
     library = {
         maximum_file_size_bytes = 25 * 1024 * 1024,
         deletion_confirmation_seconds = 8,
+
+        -- Pour éviter le freeze observé avec cmd/io.popen,
+        -- l'index est désormais la source principale fiable.
+        index_filename = "index.txt",
     },
 
     full_preview = {
@@ -15,15 +19,9 @@ return {
     },
 
     keys = {
-        refresh_library = Key.F1,
-        previous_schematic = Key.F2,
-        next_schematic = Key.F3,
-        load_selected = Key.F4,
-        destroy_preview = Key.F5,
-        spawn_preview = Key.F6,
-        show_selected_details = Key.F7,
+        manage_library = Key.F10,
+        toggle_preview = Key.F6,
         delete_selected = Key.F8,
-        toggle_watch = Key.F9,
     },
 
     build_name_markers = {

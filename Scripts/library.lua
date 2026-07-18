@@ -18,112 +18,73 @@ local function basename(path)
     return path:match("([^\\/]+)$") or path
 end
 
-local function shell_quote_windows(value)
-    return '"' .. tostring(value):gsub('"', '""') .. '"'
-end
+local function list_files_from_index(directory, config)
+    local index_path =
+        directory
+        .. config.library.index_filename
 
-local function list_files_with_popen(directory)
-    if not io.popen then
-        return nil, "io.popen unavailable"
-    end
-
-    local command =
-        'cmd /d /s /c dir /b /a-d '
-        .. shell_quote_windows(directory .. "*.palschem")
-        .. ' 2>nul'
-
-    local pipe, open_error = io.popen(command, "r")
-
-    if not pipe then
-        return nil, tostring(open_error)
-    end
-
-    local filenames = {}
-
-    for line in pipe:lines() do
-        local trimmed = line:match("^%s*(.-)%s*$")
-
-        if trimmed and trimmed ~= "" then
-            filenames[#filenames + 1] = trimmed
-        end
-    end
-
-    pipe:close()
-    return filenames, nil
-end
-
-local function list_files_with_index(directory)
-    local index_path = directory .. "index.txt"
     local file = io.open(index_path, "r")
 
     if not file then
         return nil,
-            "Automatic listing failed and Schematics/index.txt is absent"
+            "Missing library index: "
+            .. tostring(index_path)
     end
 
     local filenames = {}
 
     for line in file:lines() do
-        local trimmed = line:match("^%s*(.-)%s*$")
+        local trimmed =
+            line:match("^%s*(.-)%s*$")
 
         if trimmed
             and trimmed ~= ""
             and trimmed:sub(1, 1) ~= "#"
         then
-            filenames[#filenames + 1] = trimmed
+            filenames[
+                #filenames + 1
+            ] = basename(trimmed)
         end
     end
 
     file:close()
-    return filenames, nil
-end
-
-local function list_palschem_files()
-    local directory =
-        storage.get_schematics_directory()
-
-    local filenames, list_error =
-        list_files_with_popen(directory)
-
-    if not filenames then
-        logger.log(
-            "Automatic library listing unavailable: "
-            .. tostring(list_error)
-            .. ". Trying Schematics/index.txt."
-        )
-
-        filenames, list_error =
-            list_files_with_index(directory)
-    end
-
-    if not filenames then
-        return nil, list_error
-    end
 
     local filtered = {}
     local seen = {}
 
     for _, filename in ipairs(filenames) do
-        local name = basename(filename)
-        local extension = file_extension(name)
+        local extension =
+            file_extension(filename)
 
         if extension
             and extension:lower() == "palschem"
-            and not seen[name:lower()]
+            and not seen[filename:lower()]
         then
-            seen[name:lower()] = true
-            filtered[#filtered + 1] = name
+            seen[filename:lower()] = true
+            filtered[#filtered + 1] =
+                filename
         end
     end
 
     table.sort(
         filtered,
         function(left, right)
-            return left:lower() < right:lower()
+            return left:lower()
+                < right:lower()
         end
     )
 
     return filtered, nil
+end
+
+local function list_palschem_files(config)
+    local directory =
+        storage.get_schematics_directory()
+
+    return list_files_from_index(
+        directory,
+        config
+    )
 end
 
 local function get_file_size(path)
@@ -451,7 +412,7 @@ end
 
 function library.refresh(config)
     local filenames, list_error =
-        list_palschem_files()
+        list_palschem_files(config)
 
     entries = {}
     reset_delete_confirmation()
