@@ -1,7 +1,57 @@
-[2026-07-19 00:15:37] PalSchematica log started
-[2026-07-19 00:15:37] Loaded successfully - Phase 8B compact library manager
-[2026-07-19 00:15:37] F10 library/select next | F6 show/hide preview | F8 delete selected (double confirmation)
-[2026-07-19 00:15:37] Official schematic directory: PalSchematica/Schematics
-[2026-07-19 00:15:37] Files placed beside enabled.txt are intentionally ignored.
-[2026-07-19 00:15:37] Dedicated log file: D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/PalSchematica.log
-[2026-07-19 00:15:37] Startup library refresh failed: Missing library index: D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Schematics/index.txt
+[2026-07-19 00:55:29] PalSchematica log started
+[2026-07-19 00:55:29] Loaded successfully - Phase 8D LuaFileSystem test
+[2026-07-19 00:55:29] F10 test lfs and generate library.palschemlib | F6 show/hide preview | F8 delete selected
+[2026-07-19 00:55:29] Dedicated log file: D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/PalSchematica.log
+[2026-07-19 00:55:29] Startup library load raised an error: .../NativeMods/UE4SS/Mods/PalSchematica/Scripts/library.lua:25: attempt to concatenate a nil value (field 'index_filename')
+[2026-07-19 00:56:07] LuaFileSystem test requested
+[2026-07-19 00:56:07] === LUAFILESYSTEM LIBRARY TEST START ===
+[2026-07-19 00:56:07] LuaFileSystem unavailable: ...iveMods/UE4SS/Mods/PalSchematica/Scripts/lfs_library.lua:21: module 'lfs' not found:
+	module 'lfs' not found:
+	D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Scripts/lfs.lua
+	D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/shared/lfs.lua
+	D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/shared/lfs/lfs.lua
+	no field package.preload['lfs']
+	no file 'D:\Steam\steamapps\common\Palworld\Mods\NativeMods\UE4SS\Mods\PalSchematica\Scripts\lfs.lua'
+	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\lua\lfs.lua'
+	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\lua\lfs\init.lua'
+	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\lfs.lua'
+	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\lfs\init.lua'
+	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\..\share\lua\5.4\lfs.lua'
+	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\..\share\lua\5.4\lfs\init.lua'
+	no file '.\lfs.lua'
+	no file '.\lfs\init.lua'
+	no file 'D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Scripts/lfs.lua'
+	no file 'D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/shared/lfs.lua'
+	no file 'D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/shared/lfs/lfs.lua'
+	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\lfs.dll'
+	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\..\lib\lua\5.4\lfs.dll'
+	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\loadall.dll'
+	no file '.\lfs.dll'
+	no file 'D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Scripts/lfs.dll'
+	no file 'D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/lfs/lfs.dll'
+[2026-07-19 00:56:07] RESULT: LFS_UNAVAILABLE
+[2026-07-19 00:56:07] === LUAFILESYSTEM LIBRARY TEST END ===
+[2026-07-19 00:56:07] LFS test failed: ...iveMods/UE4SS/Mods/PalSchematica/Scripts/lfs_library.lua:21: module 'lfs' not found:
+	module 'lfs' not found:
+	D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Scripts/lfs.lua
+	D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/shared/lfs.lua
+	D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/shared/lfs/lfs.lua
+	no field package.preload['lfs']
+	no file 'D:\Steam\steamapps\common\Palworld\Mods\NativeMods\UE4SS\Mods\PalSchematica\Scripts\lfs.lua'
+	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\lua\lfs.lua'
+	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\lua\lfs\init.lua'
+	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\lfs.lua'
+	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\lfs\init.lua'
+	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\..\share\lua\5.4\lfs.lua'
+	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\..\share\lua\5.4\lfs\init.lua'
+	no file '.\lfs.lua'
+	no file '.\lfs\init.lua'
+	no file 'D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Scripts/lfs.lua'
+	no file 'D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/shared/lfs.lua'
+	no file 'D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/shared/lfs/lfs.lua'
+	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\lfs.dll'
+	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\..\lib\lua\5.4\lfs.dll'
+	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\loadall.dll'
+	no file '.\lfs.dll'
+	no file 'D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Scripts/lfs.dll'
+	no file 'D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/lfs/lfs.dll'

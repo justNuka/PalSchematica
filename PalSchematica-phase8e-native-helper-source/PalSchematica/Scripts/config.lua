@@ -11,10 +11,6 @@ return {
         manifest_format_version = 1,
     },
 
-    diagnostics = {
-        maximum_logged_files = 200,
-    },
-
     full_preview = {
         anchor_distance = 1200.0,
         height_offset = -100.0,
@@ -23,7 +19,7 @@ return {
     },
 
     keys = {
-        run_lfs_test = Key.F10,
+        manage_library = Key.F10,
         toggle_preview = Key.F6,
         delete_selected = Key.F8,
     },

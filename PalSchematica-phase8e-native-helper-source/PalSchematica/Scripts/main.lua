@@ -7,63 +7,77 @@ package.path =
     .. package.path
 
 local config = require("config")
-local lfs_library = require("lfs_library")
 local library = require("library")
 local logger = require("logger")
 local schematic_preview =
     require("schematic_preview")
 
 local loaded_document = nil
+local library_opened = false
 local preview_visible = false
 
-local function refresh_and_load_first()
-    local success, error_message =
-        library.refresh(config)
+local function load_selected()
+    local document, error_message =
+        library.load_selected()
 
-    if not success then
+    if not document then
+        loaded_document = nil
+
         logger.log(
-            "Current library refresh failed: "
+            "Unable to load selected schematic: "
             .. tostring(error_message)
         )
         return false
     end
 
-    local document, load_error =
-        library.load_selected()
+    loaded_document = document
+    library.log_selected_details()
 
-    if not document then
+    logger.log(
+        "Selected schematic ready. "
+        .. "Press F6 to show/hide it."
+    )
+
+    return true
+end
+
+local function refresh_library()
+    local success, error_message =
+        library.refresh(config)
+
+    if not success then
         logger.log(
-            "Unable to load selected schematic: "
-            .. tostring(load_error)
+            "Library refresh failed: "
+            .. tostring(error_message)
         )
         return false
     end
 
-    loaded_document = document
-    return true
+    return load_selected()
 end
 
 RegisterKeyBind(
-    config.keys.run_lfs_test,
+    config.keys.manage_library,
     function()
-        logger.log(
-            "LuaFileSystem test requested"
-        )
-
-        local success, result =
-            lfs_library.run(config)
-
-        if success then
+        if not library_opened then
             logger.log(
-                "LFS test completed successfully. "
-                .. "library.palschemlib was generated."
+                "Native-backed library opened/refreshed"
             )
-        else
-            logger.log(
-                "LFS test failed: "
-                .. tostring(result)
-            )
+
+            library_opened = true
+            refresh_library()
+            return
         end
+
+        local _, select_error =
+            library.select_next()
+
+        if select_error then
+            logger.log(select_error)
+            return
+        end
+
+        load_selected()
     end
 )
 
@@ -79,7 +93,7 @@ RegisterKeyBind(
 
             if not loaded_document then
                 logger.log(
-                    "No schematic loaded."
+                    "No schematic loaded. Press F10 first."
                 )
                 return
             end
@@ -106,6 +120,13 @@ RegisterKeyBind(
 RegisterKeyBind(
     config.keys.delete_selected,
     function()
+        if preview_visible then
+            ExecuteInGameThread(function()
+                schematic_preview.destroy_all()
+                preview_visible = false
+            end)
+        end
+
         local success, message =
             library.delete_selected(config)
 
@@ -113,6 +134,12 @@ RegisterKeyBind(
 
         if success then
             loaded_document = nil
+            library_opened = false
+
+            logger.log(
+                "The native helper will refresh the manifest "
+                .. "automatically. Press F10 shortly."
+            )
         end
     end
 )
@@ -120,13 +147,18 @@ RegisterKeyBind(
 logger.clear()
 
 logger.log(
-    "Loaded successfully - Phase 8D LuaFileSystem test"
+    "Loaded successfully - Phase 8E native manifest consumer"
 )
 
 logger.log(
-    "F10 test lfs and generate library.palschemlib | "
+    "F10 library/select next | "
     .. "F6 show/hide preview | "
     .. "F8 delete selected"
+)
+
+logger.log(
+    "Library source: Schematics/"
+    .. config.library.manifest_filename
 )
 
 logger.log(
@@ -136,7 +168,9 @@ logger.log(
 
 local startup_ok, startup_error =
     pcall(function()
-        refresh_and_load_first()
+        if refresh_library() then
+            library_opened = true
+        end
     end)
 
 if not startup_ok then
