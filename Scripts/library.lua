@@ -564,6 +564,24 @@ function library.get_view_model()
     }
 end
 
+
+function library.select_filename(filename)
+    if type(filename) ~= "string" or filename == "" then
+        return nil, "Invalid filename"
+    end
+
+    for index, entry in ipairs(entries) do
+        if entry.filename == filename then
+            selected_index = index
+            reset_delete_confirmation()
+            library.log_selected_short()
+            return entry, nil
+        end
+    end
+
+    return nil, "Schematic not found: " .. tostring(filename)
+end
+
 function library.select_previous()
     if #entries == 0 then
         return nil, "Library is empty"

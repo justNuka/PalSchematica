@@ -1,0 +1,45 @@
+[2026-07-19 13:55:15] PalSchematica log started
+[2026-07-19 13:55:15] Loaded successfully - Phase 10 native ImGui bridge
+[2026-07-19 13:55:15] F10 open/next library | F6 show/hide preview | F8 delete selected
+[2026-07-19 13:55:15] Library source: Schematics/library.palschemlib
+[2026-07-19 13:55:15] Dedicated log file: D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/PalSchematica.log
+[2026-07-19 13:55:15] Library refreshed: 3 .palschem file(s)
+[2026-07-19 13:55:15] === SCHEMATIC LIBRARY ===
+[2026-07-19 13:55:15] > [1/3] Ma base | file=ma-base.palschem | status=COMPATIBLE | pieces=44 | size=24167
+[2026-07-19 13:55:15]   [2/3] Wood test base | file=wood-test-base - Copie.palschem | status=COMPATIBLE | pieces=44 | size=23239
+[2026-07-19 13:55:15]   [3/3] Wood test base | file=wood-test-base.palschem | status=COMPATIBLE | pieces=44 | size=23239
+[2026-07-19 13:55:15] =========================
+[2026-07-19 13:55:15] Selected schematic loaded into memory: Ma base
+[2026-07-19 13:55:15] === SELECTED SCHEMATIC DETAILS ===
+[2026-07-19 13:55:15] Name: Ma base
+[2026-07-19 13:55:15] File: ma-base.palschem
+[2026-07-19 13:55:15] Path: D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Schematics/ma-base.palschem
+[2026-07-19 13:55:15] Status: COMPATIBLE
+[2026-07-19 13:55:15] Size: 24167 bytes
+[2026-07-19 13:55:15] Format: PalSchematica v1
+[2026-07-19 13:55:15] Author: Elias
+[2026-07-19 13:55:15] Created at: 2026-07-18T16:42:38.236935Z
+[2026-07-19 13:55:15] Pieces: 44 | compatible=44 | unknown=0
+[2026-07-19 13:55:15] --- CONSTRUCTION COUNTS ---
+[2026-07-19 13:55:15] BP_BuildObject_Wood_DiagonalWall_C = 2
+[2026-07-19 13:55:15] BP_BuildObject_Wood_DoorWall_C = 2
+[2026-07-19 13:55:15] BP_BuildObject_Wood_Fence_C = 2
+[2026-07-19 13:55:15] BP_BuildObject_Wood_Foundation_C = 6
+[2026-07-19 13:55:15] BP_BuildObject_Wood_Pillar_C = 1
+[2026-07-19 13:55:15] BP_BuildObject_Wood_PyramidRoof_C = 1
+[2026-07-19 13:55:15] BP_BuildObject_Wood_Roof_C = 3
+[2026-07-19 13:55:15] BP_BuildObject_Wood_SlantedRoof_C = 1
+[2026-07-19 13:55:15] BP_BuildObject_Wood_SlopedRoofCornerReverse_C = 2
+[2026-07-19 13:55:15] BP_BuildObject_Wood_SlopedRoofCorner_C = 1
+[2026-07-19 13:55:15] BP_BuildObject_Wood_Stair_C = 3
+[2026-07-19 13:55:15] BP_BuildObject_Wood_TriangleRoof_C = 3
+[2026-07-19 13:55:15] BP_BuildObject_Wood_TriangleStairsCorner_C = 1
+[2026-07-19 13:55:15] BP_BuildObject_Wood_TriangleWallReverse_C = 4
+[2026-07-19 13:55:15] BP_BuildObject_Wood_TriangleWall_C = 4
+[2026-07-19 13:55:15] BP_BuildObject_Wood_WallGate_C = 2
+[2026-07-19 13:55:15] BP_BuildObject_Wood_Wall_V2_C = 4
+[2026-07-19 13:55:15] BP_BuildObject_Wood_WindowWall_C = 2
+[2026-07-19 13:55:15] Materials: unavailable until the Palworld recipe catalog is generated.
+[2026-07-19 13:55:15] ==================================
+[2026-07-19 13:55:15] Selected schematic ready. Press F6 to show/hide it.
+[2026-07-19 13:55:15] Native ImGui command bridge active

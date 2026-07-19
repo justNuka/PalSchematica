@@ -206,7 +206,7 @@ RegisterKeyBind(
 logger.clear()
 
 logger.log(
-    "Loaded successfully - Phase 9C native UMG in-game library"
+    "Loaded successfully - Phase 10 native ImGui bridge"
 )
 
 logger.log(
@@ -237,3 +237,117 @@ if not startup_ok then
         .. tostring(startup_error)
     )
 end
+
+
+local command_path =
+    storage and nil
+
+local function get_command_path()
+    local storage_module = require("storage")
+    return storage_module.get_schematics_directory()
+        .. "imgui-command.json"
+end
+
+local function read_and_remove_command()
+    local path = get_command_path()
+    local file = io.open(path, "rb")
+    if not file then
+        return nil
+    end
+
+    local content = file:read("*a")
+    file:close()
+    os.remove(path)
+
+    local ok, command = pcall(function()
+        return require("json").decode(content)
+    end)
+
+    if not ok or type(command) ~= "table" then
+        logger.log("Invalid ImGui command: " .. tostring(command))
+        return nil
+    end
+
+    return command
+end
+
+local function apply_imgui_command(command)
+    if command.action == "refresh" then
+        refresh_library(false)
+        return
+    end
+
+    if command.file then
+        local _, select_error = library.select_filename(command.file)
+        if select_error then
+            logger.log(select_error)
+            return
+        end
+        load_selected(false)
+    end
+
+    if command.action == "select" then
+        return
+    end
+
+    if command.action == "preview" then
+        ExecuteInGameThread(function()
+            if preview_visible then
+                schematic_preview.destroy_all()
+                preview_visible = false
+            end
+
+            if not loaded_document then
+                logger.log("ImGui preview requested without loaded document")
+                return
+            end
+
+            local success, error_message = schematic_preview.spawn(loaded_document, config)
+            if not success then
+                logger.log("ImGui preview failed: " .. tostring(error_message))
+                return
+            end
+
+            preview_visible = true
+        end)
+        return
+    end
+
+    if command.action == "hide_preview" then
+        ExecuteInGameThread(function()
+            schematic_preview.destroy_all()
+            preview_visible = false
+        end)
+        return
+    end
+
+    if command.action == "delete" then
+        if preview_visible then
+            ExecuteInGameThread(function()
+                schematic_preview.destroy_all()
+                preview_visible = false
+            end)
+        end
+
+        local success, message = library.delete_selected(config)
+        logger.log("ImGui delete: " .. tostring(message))
+        if success then
+            loaded_document = nil
+        end
+    end
+end
+
+LoopAsync(250, function()
+    local command = read_and_remove_command()
+    if command then
+        local ok, error_message = pcall(function()
+            apply_imgui_command(command)
+        end)
+        if not ok then
+            logger.log("ImGui command error: " .. tostring(error_message))
+        end
+    end
+    return false
+end)
+
+logger.log("Native ImGui command bridge active")

@@ -1,24 +1,12 @@
 {
   "format": "PalSchematicaLibrary",
   "formatVersion": 1,
-  "generatedAt": 1784451842,
+  "generatedAt": 1784454704,
   "schematicCount": 3,
   "selectedFile": "ma-base.palschem",
   "schematics": [
-    {
-      "file": "ma-base.palschem",
-      "size": 24167,
-      "modifiedAt": 1784392958
-    },
-    {
-      "file": "wood-test-base - Copie.palschem",
-      "size": 23239,
-      "modifiedAt": 1784392733
-    },
-    {
-      "file": "wood-test-base.palschem",
-      "size": 23239,
-      "modifiedAt": 1784392733
-    }
+    {"file":"ma-base.palschem","size":24167,"modifiedAt":1784392958},
+    {"file":"wood-test-base - Copie.palschem","size":23239,"modifiedAt":1784392733},
+    {"file":"wood-test-base.palschem","size":23239,"modifiedAt":1784392733}
   ]
 }
