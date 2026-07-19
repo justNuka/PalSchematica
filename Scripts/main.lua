@@ -7,63 +7,122 @@ package.path =
     .. package.path
 
 local config = require("config")
-local lfs_library = require("lfs_library")
 local library = require("library")
 local logger = require("logger")
-local schematic_preview =
-    require("schematic_preview")
+local schematic_preview = require("schematic_preview")
+local ui = require("ui")
 
 local loaded_document = nil
+local library_opened = false
 local preview_visible = false
 
-local function refresh_and_load_first()
+local function current_view()
+    return library.get_view_model()
+end
+
+local function show_library_ui()
+    ui.show_library(
+        current_view(),
+        config,
+        preview_visible
+    )
+end
+
+local function load_selected(show_ui)
+    local document, error_message =
+        library.load_selected()
+
+    if not document then
+        loaded_document = nil
+
+        logger.log(
+            "Unable to load selected schematic: "
+            .. tostring(error_message)
+        )
+
+        if show_ui then
+            ui.show(
+                "PalSchematica error: "
+                .. tostring(error_message),
+                config.ui.notification_duration_seconds
+            )
+        end
+
+        return false
+    end
+
+    loaded_document = document
+    library.log_selected_details()
+
+    logger.log(
+        "Selected schematic ready. "
+        .. "Press F6 to show/hide it."
+    )
+
+    if show_ui then
+        show_library_ui()
+    end
+
+    return true
+end
+
+local function refresh_library(show_ui)
     local success, error_message =
         library.refresh(config)
 
     if not success then
         logger.log(
-            "Current library refresh failed: "
+            "Library refresh failed: "
             .. tostring(error_message)
         )
+
+        if show_ui then
+            ui.show(
+                "Library refresh failed: "
+                .. tostring(error_message),
+                config.ui.library_duration_seconds
+            )
+        end
+
         return false
     end
 
-    local document, load_error =
-        library.load_selected()
-
-    if not document then
-        logger.log(
-            "Unable to load selected schematic: "
-            .. tostring(load_error)
-        )
-        return false
-    end
-
-    loaded_document = document
-    return true
+    return load_selected(show_ui)
 end
 
 RegisterKeyBind(
-    config.keys.run_lfs_test,
+    config.keys.manage_library,
     function()
-        logger.log(
-            "LuaFileSystem test requested"
-        )
-
-        local success, result =
-            lfs_library.run(config)
-
-        if success then
+        if not library_opened then
             logger.log(
-                "LFS test completed successfully. "
-                .. "library.palschemlib was generated."
+                "In-game library opened/refreshed"
             )
-        else
-            logger.log(
-                "LFS test failed: "
-                .. tostring(result)
-            )
+
+            library_opened = true
+            refresh_library(true)
+            return
         end
+
+        local _, select_error =
+            library.select_next()
+
+        if select_error then
+            logger.log(select_error)
+            ui.show(
+                tostring(select_error),
+                config.ui.notification_duration_seconds
+            )
+            return
+        end
+
+        if preview_visible then
+            ExecuteInGameThread(function()
+                schematic_preview.destroy_all()
+                preview_visible = false
+            end)
+        end
+
+        load_selected(true)
     end
 )
 
@@ -74,12 +133,21 @@ RegisterKeyBind(
             if preview_visible then
                 schematic_preview.destroy_all()
                 preview_visible = false
+                ui.show_preview_state(
+                    false,
+                    current_view(),
+                    config
+                )
                 return
             end
 
             if not loaded_document then
                 logger.log(
-                    "No schematic loaded."
+                    "No schematic loaded. Press F10 first."
+                )
+                ui.show(
+                    "No schematic loaded - press F10",
+                    config.ui.notification_duration_seconds
                 )
                 return
             end
@@ -95,10 +163,20 @@ RegisterKeyBind(
                     "Preview creation failed: "
                     .. tostring(error_message)
                 )
+                ui.show(
+                    "Preview failed: "
+                    .. tostring(error_message),
+                    config.ui.notification_duration_seconds
+                )
                 return
             end
 
             preview_visible = true
+            ui.show_preview_state(
+                true,
+                current_view(),
+                config
+            )
         end)
     end
 )
@@ -106,13 +184,27 @@ RegisterKeyBind(
 RegisterKeyBind(
     config.keys.delete_selected,
     function()
+        if preview_visible then
+            ExecuteInGameThread(function()
+                schematic_preview.destroy_all()
+                preview_visible = false
+            end)
+        end
+
         local success, message =
             library.delete_selected(config)
 
         logger.log(tostring(message))
+        ui.show_delete_message(message, config)
 
         if success then
             loaded_document = nil
+            library_opened = false
+
+            logger.log(
+                "The native helper will refresh the manifest "
+                .. "automatically. Press F10 shortly."
+            )
         end
     end
 )
@@ -120,13 +212,18 @@ RegisterKeyBind(
 logger.clear()
 
 logger.log(
-    "Loaded successfully - Phase 8D LuaFileSystem test"
+    "Loaded successfully - Phase 9 in-game library HUD"
 )
 
 logger.log(
-    "F10 test lfs and generate library.palschemlib | "
+    "F10 open/next library | "
     .. "F6 show/hide preview | "
     .. "F8 delete selected"
+)
+
+logger.log(
+    "Library source: Schematics/"
+    .. config.library.manifest_filename
 )
 
 logger.log(
@@ -136,7 +233,8 @@ logger.log(
 
 local startup_ok, startup_error =
     pcall(function()
-        refresh_and_load_first()
+        refresh_library(false)
+        library_opened = false
     end)
 
 if not startup_ok then

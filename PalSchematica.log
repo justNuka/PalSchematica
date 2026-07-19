@@ -1,57 +1,187 @@
-[2026-07-19 00:55:29] PalSchematica log started
-[2026-07-19 00:55:29] Loaded successfully - Phase 8D LuaFileSystem test
-[2026-07-19 00:55:29] F10 test lfs and generate library.palschemlib | F6 show/hide preview | F8 delete selected
-[2026-07-19 00:55:29] Dedicated log file: D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/PalSchematica.log
-[2026-07-19 00:55:29] Startup library load raised an error: .../NativeMods/UE4SS/Mods/PalSchematica/Scripts/library.lua:25: attempt to concatenate a nil value (field 'index_filename')
-[2026-07-19 00:56:07] LuaFileSystem test requested
-[2026-07-19 00:56:07] === LUAFILESYSTEM LIBRARY TEST START ===
-[2026-07-19 00:56:07] LuaFileSystem unavailable: ...iveMods/UE4SS/Mods/PalSchematica/Scripts/lfs_library.lua:21: module 'lfs' not found:
-	module 'lfs' not found:
-	D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Scripts/lfs.lua
-	D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/shared/lfs.lua
-	D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/shared/lfs/lfs.lua
-	no field package.preload['lfs']
-	no file 'D:\Steam\steamapps\common\Palworld\Mods\NativeMods\UE4SS\Mods\PalSchematica\Scripts\lfs.lua'
-	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\lua\lfs.lua'
-	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\lua\lfs\init.lua'
-	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\lfs.lua'
-	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\lfs\init.lua'
-	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\..\share\lua\5.4\lfs.lua'
-	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\..\share\lua\5.4\lfs\init.lua'
-	no file '.\lfs.lua'
-	no file '.\lfs\init.lua'
-	no file 'D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Scripts/lfs.lua'
-	no file 'D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/shared/lfs.lua'
-	no file 'D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/shared/lfs/lfs.lua'
-	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\lfs.dll'
-	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\..\lib\lua\5.4\lfs.dll'
-	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\loadall.dll'
-	no file '.\lfs.dll'
-	no file 'D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Scripts/lfs.dll'
-	no file 'D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/lfs/lfs.dll'
-[2026-07-19 00:56:07] RESULT: LFS_UNAVAILABLE
-[2026-07-19 00:56:07] === LUAFILESYSTEM LIBRARY TEST END ===
-[2026-07-19 00:56:07] LFS test failed: ...iveMods/UE4SS/Mods/PalSchematica/Scripts/lfs_library.lua:21: module 'lfs' not found:
-	module 'lfs' not found:
-	D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Scripts/lfs.lua
-	D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/shared/lfs.lua
-	D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/shared/lfs/lfs.lua
-	no field package.preload['lfs']
-	no file 'D:\Steam\steamapps\common\Palworld\Mods\NativeMods\UE4SS\Mods\PalSchematica\Scripts\lfs.lua'
-	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\lua\lfs.lua'
-	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\lua\lfs\init.lua'
-	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\lfs.lua'
-	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\lfs\init.lua'
-	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\..\share\lua\5.4\lfs.lua'
-	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\..\share\lua\5.4\lfs\init.lua'
-	no file '.\lfs.lua'
-	no file '.\lfs\init.lua'
-	no file 'D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Scripts/lfs.lua'
-	no file 'D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/shared/lfs.lua'
-	no file 'D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/shared/lfs/lfs.lua'
-	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\lfs.dll'
-	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\..\lib\lua\5.4\lfs.dll'
-	no file 'D:\Steam\steamapps\common\Palworld\Pal\Binaries\Win64\loadall.dll'
-	no file '.\lfs.dll'
-	no file 'D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Scripts/lfs.dll'
-	no file 'D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/lfs/lfs.dll'
+[2026-07-19 02:29:10] PalSchematica log started
+[2026-07-19 02:29:10] Loaded successfully - Phase 8E native manifest consumer
+[2026-07-19 02:29:10] F10 library/select next | F6 show/hide preview | F8 delete selected
+[2026-07-19 02:29:10] Library source: Schematics/library.palschemlib
+[2026-07-19 02:29:10] Dedicated log file: D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/PalSchematica.log
+[2026-07-19 02:29:10] Library refreshed: 2 .palschem file(s)
+[2026-07-19 02:29:10] === SCHEMATIC LIBRARY ===
+[2026-07-19 02:29:10] > [1/2] Ma base | file=ma-base.palschem | status=COMPATIBLE | pieces=44 | size=24167
+[2026-07-19 02:29:10]   [2/2] Wood test base | file=wood-test-base.palschem | status=COMPATIBLE | pieces=44 | size=23239
+[2026-07-19 02:29:10] =========================
+[2026-07-19 02:29:10] Selected schematic loaded into memory: Ma base
+[2026-07-19 02:29:10] === SELECTED SCHEMATIC DETAILS ===
+[2026-07-19 02:29:10] Name: Ma base
+[2026-07-19 02:29:10] File: ma-base.palschem
+[2026-07-19 02:29:10] Path: D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Schematics/ma-base.palschem
+[2026-07-19 02:29:10] Status: COMPATIBLE
+[2026-07-19 02:29:10] Size: 24167 bytes
+[2026-07-19 02:29:10] Format: PalSchematica v1
+[2026-07-19 02:29:10] Author: Elias
+[2026-07-19 02:29:10] Created at: 2026-07-18T16:42:38.236935Z
+[2026-07-19 02:29:10] Pieces: 44 | compatible=44 | unknown=0
+[2026-07-19 02:29:10] --- CONSTRUCTION COUNTS ---
+[2026-07-19 02:29:10] BP_BuildObject_Wood_DiagonalWall_C = 2
+[2026-07-19 02:29:10] BP_BuildObject_Wood_DoorWall_C = 2
+[2026-07-19 02:29:10] BP_BuildObject_Wood_Fence_C = 2
+[2026-07-19 02:29:10] BP_BuildObject_Wood_Foundation_C = 6
+[2026-07-19 02:29:10] BP_BuildObject_Wood_Pillar_C = 1
+[2026-07-19 02:29:10] BP_BuildObject_Wood_PyramidRoof_C = 1
+[2026-07-19 02:29:10] BP_BuildObject_Wood_Roof_C = 3
+[2026-07-19 02:29:10] BP_BuildObject_Wood_SlantedRoof_C = 1
+[2026-07-19 02:29:10] BP_BuildObject_Wood_SlopedRoofCornerReverse_C = 2
+[2026-07-19 02:29:10] BP_BuildObject_Wood_SlopedRoofCorner_C = 1
+[2026-07-19 02:29:10] BP_BuildObject_Wood_Stair_C = 3
+[2026-07-19 02:29:10] BP_BuildObject_Wood_TriangleRoof_C = 3
+[2026-07-19 02:29:10] BP_BuildObject_Wood_TriangleStairsCorner_C = 1
+[2026-07-19 02:29:10] BP_BuildObject_Wood_TriangleWallReverse_C = 4
+[2026-07-19 02:29:10] BP_BuildObject_Wood_TriangleWall_C = 4
+[2026-07-19 02:29:10] BP_BuildObject_Wood_WallGate_C = 2
+[2026-07-19 02:29:10] BP_BuildObject_Wood_Wall_V2_C = 4
+[2026-07-19 02:29:10] BP_BuildObject_Wood_WindowWall_C = 2
+[2026-07-19 02:29:10] Materials: unavailable until the Palworld recipe catalog is generated.
+[2026-07-19 02:29:10] ==================================
+[2026-07-19 02:29:10] Selected schematic ready. Press F6 to show/hide it.
+[2026-07-19 02:31:20] SELECTED [2/2] Wood test base | wood-test-base.palschem | COMPATIBLE
+[2026-07-19 02:31:20] Selected schematic loaded into memory: Wood test base
+[2026-07-19 02:31:20] === SELECTED SCHEMATIC DETAILS ===
+[2026-07-19 02:31:20] Name: Wood test base
+[2026-07-19 02:31:20] File: wood-test-base.palschem
+[2026-07-19 02:31:20] Path: D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Schematics/wood-test-base.palschem
+[2026-07-19 02:31:20] Status: COMPATIBLE
+[2026-07-19 02:31:20] Size: 23239 bytes
+[2026-07-19 02:31:20] Format: PalSchematica v1
+[2026-07-19 02:31:20] Author: Elias
+[2026-07-19 02:31:20] Created at: 2026-07-17T23:34:20.326859Z
+[2026-07-19 02:31:20] Pieces: 44 | compatible=44 | unknown=0
+[2026-07-19 02:31:20] --- CONSTRUCTION COUNTS ---
+[2026-07-19 02:31:20] BP_BuildObject_Wood_DiagonalWall_C = 2
+[2026-07-19 02:31:20] BP_BuildObject_Wood_DoorWall_C = 2
+[2026-07-19 02:31:20] BP_BuildObject_Wood_Fence_C = 2
+[2026-07-19 02:31:20] BP_BuildObject_Wood_Foundation_C = 6
+[2026-07-19 02:31:20] BP_BuildObject_Wood_Pillar_C = 1
+[2026-07-19 02:31:20] BP_BuildObject_Wood_PyramidRoof_C = 1
+[2026-07-19 02:31:20] BP_BuildObject_Wood_Roof_C = 3
+[2026-07-19 02:31:20] BP_BuildObject_Wood_SlantedRoof_C = 1
+[2026-07-19 02:31:20] BP_BuildObject_Wood_SlopedRoofCornerReverse_C = 2
+[2026-07-19 02:31:20] BP_BuildObject_Wood_SlopedRoofCorner_C = 1
+[2026-07-19 02:31:20] BP_BuildObject_Wood_Stair_C = 3
+[2026-07-19 02:31:20] BP_BuildObject_Wood_TriangleRoof_C = 3
+[2026-07-19 02:31:20] BP_BuildObject_Wood_TriangleStairsCorner_C = 1
+[2026-07-19 02:31:20] BP_BuildObject_Wood_TriangleWallReverse_C = 4
+[2026-07-19 02:31:20] BP_BuildObject_Wood_TriangleWall_C = 4
+[2026-07-19 02:31:20] BP_BuildObject_Wood_WallGate_C = 2
+[2026-07-19 02:31:20] BP_BuildObject_Wood_Wall_V2_C = 4
+[2026-07-19 02:31:20] BP_BuildObject_Wood_WindowWall_C = 2
+[2026-07-19 02:31:20] Materials: unavailable until the Palworld recipe catalog is generated.
+[2026-07-19 02:31:20] ==================================
+[2026-07-19 02:31:20] Selected schematic ready. Press F6 to show/hide it.
+[2026-07-19 02:31:27] SELECTED [1/2] Ma base | ma-base.palschem | COMPATIBLE
+[2026-07-19 02:31:27] Selected schematic loaded into memory: Ma base
+[2026-07-19 02:31:27] === SELECTED SCHEMATIC DETAILS ===
+[2026-07-19 02:31:27] Name: Ma base
+[2026-07-19 02:31:27] File: ma-base.palschem
+[2026-07-19 02:31:27] Path: D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Schematics/ma-base.palschem
+[2026-07-19 02:31:27] Status: COMPATIBLE
+[2026-07-19 02:31:27] Size: 24167 bytes
+[2026-07-19 02:31:27] Format: PalSchematica v1
+[2026-07-19 02:31:27] Author: Elias
+[2026-07-19 02:31:27] Created at: 2026-07-18T16:42:38.236935Z
+[2026-07-19 02:31:27] Pieces: 44 | compatible=44 | unknown=0
+[2026-07-19 02:31:27] --- CONSTRUCTION COUNTS ---
+[2026-07-19 02:31:27] BP_BuildObject_Wood_DiagonalWall_C = 2
+[2026-07-19 02:31:27] BP_BuildObject_Wood_DoorWall_C = 2
+[2026-07-19 02:31:27] BP_BuildObject_Wood_Fence_C = 2
+[2026-07-19 02:31:27] BP_BuildObject_Wood_Foundation_C = 6
+[2026-07-19 02:31:27] BP_BuildObject_Wood_Pillar_C = 1
+[2026-07-19 02:31:27] BP_BuildObject_Wood_PyramidRoof_C = 1
+[2026-07-19 02:31:27] BP_BuildObject_Wood_Roof_C = 3
+[2026-07-19 02:31:27] BP_BuildObject_Wood_SlantedRoof_C = 1
+[2026-07-19 02:31:27] BP_BuildObject_Wood_SlopedRoofCornerReverse_C = 2
+[2026-07-19 02:31:27] BP_BuildObject_Wood_SlopedRoofCorner_C = 1
+[2026-07-19 02:31:27] BP_BuildObject_Wood_Stair_C = 3
+[2026-07-19 02:31:27] BP_BuildObject_Wood_TriangleRoof_C = 3
+[2026-07-19 02:31:27] BP_BuildObject_Wood_TriangleStairsCorner_C = 1
+[2026-07-19 02:31:27] BP_BuildObject_Wood_TriangleWallReverse_C = 4
+[2026-07-19 02:31:27] BP_BuildObject_Wood_TriangleWall_C = 4
+[2026-07-19 02:31:27] BP_BuildObject_Wood_WallGate_C = 2
+[2026-07-19 02:31:27] BP_BuildObject_Wood_Wall_V2_C = 4
+[2026-07-19 02:31:27] BP_BuildObject_Wood_WindowWall_C = 2
+[2026-07-19 02:31:27] Materials: unavailable until the Palworld recipe catalog is generated.
+[2026-07-19 02:31:27] ==================================
+[2026-07-19 02:31:27] Selected schematic ready. Press F6 to show/hide it.
+[2026-07-19 02:31:29] Player resolved: BP_Player_Female_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_Player_Female_C_2147480785
+[2026-07-19 02:31:29] Full preview anchor | X=-363338.865 Y=201561.948 Z=-2045.261 | Yaw=-169.257
+[2026-07-19 02:31:29] FULL SCHEMATIC PREVIEW CREATED | pieces=44 spawnedMeshes=46 skippedPieces=0 failedMeshes=0
+[2026-07-19 02:31:46] SELECTED [2/2] Wood test base | wood-test-base.palschem | COMPATIBLE
+[2026-07-19 02:31:46] Selected schematic loaded into memory: Wood test base
+[2026-07-19 02:31:46] === SELECTED SCHEMATIC DETAILS ===
+[2026-07-19 02:31:46] Name: Wood test base
+[2026-07-19 02:31:46] File: wood-test-base.palschem
+[2026-07-19 02:31:46] Path: D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Schematics/wood-test-base.palschem
+[2026-07-19 02:31:46] Status: COMPATIBLE
+[2026-07-19 02:31:46] Size: 23239 bytes
+[2026-07-19 02:31:46] Format: PalSchematica v1
+[2026-07-19 02:31:46] Author: Elias
+[2026-07-19 02:31:46] Created at: 2026-07-17T23:34:20.326859Z
+[2026-07-19 02:31:46] Pieces: 44 | compatible=44 | unknown=0
+[2026-07-19 02:31:46] --- CONSTRUCTION COUNTS ---
+[2026-07-19 02:31:46] BP_BuildObject_Wood_DiagonalWall_C = 2
+[2026-07-19 02:31:46] BP_BuildObject_Wood_DoorWall_C = 2
+[2026-07-19 02:31:46] BP_BuildObject_Wood_Fence_C = 2
+[2026-07-19 02:31:46] BP_BuildObject_Wood_Foundation_C = 6
+[2026-07-19 02:31:46] BP_BuildObject_Wood_Pillar_C = 1
+[2026-07-19 02:31:46] BP_BuildObject_Wood_PyramidRoof_C = 1
+[2026-07-19 02:31:46] BP_BuildObject_Wood_Roof_C = 3
+[2026-07-19 02:31:46] BP_BuildObject_Wood_SlantedRoof_C = 1
+[2026-07-19 02:31:46] BP_BuildObject_Wood_SlopedRoofCornerReverse_C = 2
+[2026-07-19 02:31:46] BP_BuildObject_Wood_SlopedRoofCorner_C = 1
+[2026-07-19 02:31:46] BP_BuildObject_Wood_Stair_C = 3
+[2026-07-19 02:31:46] BP_BuildObject_Wood_TriangleRoof_C = 3
+[2026-07-19 02:31:46] BP_BuildObject_Wood_TriangleStairsCorner_C = 1
+[2026-07-19 02:31:46] BP_BuildObject_Wood_TriangleWallReverse_C = 4
+[2026-07-19 02:31:46] BP_BuildObject_Wood_TriangleWall_C = 4
+[2026-07-19 02:31:46] BP_BuildObject_Wood_WallGate_C = 2
+[2026-07-19 02:31:46] BP_BuildObject_Wood_Wall_V2_C = 4
+[2026-07-19 02:31:46] BP_BuildObject_Wood_WindowWall_C = 2
+[2026-07-19 02:31:46] Materials: unavailable until the Palworld recipe catalog is generated.
+[2026-07-19 02:31:46] ==================================
+[2026-07-19 02:31:46] Selected schematic ready. Press F6 to show/hide it.
+[2026-07-19 02:31:48] Full schematic preview destroyed: 46 actor(s)
+[2026-07-19 02:31:50] Player resolved: BP_Player_Female_C /Game/Pal/Maps/MainWorld_5/PL_MainWorld5.PL_MainWorld5:PersistentLevel.BP_Player_Female_C_2147480785
+[2026-07-19 02:31:50] Full preview anchor | X=-363414.403 Y=203056.118 Z=-2045.261 | Yaw=144.063
+[2026-07-19 02:31:50] FULL SCHEMATIC PREVIEW CREATED | pieces=44 spawnedMeshes=46 skippedPieces=0 failedMeshes=0
+[2026-07-19 02:32:36] SELECTED [1/2] Ma base | ma-base.palschem | COMPATIBLE
+[2026-07-19 02:32:36] Selected schematic loaded into memory: Ma base
+[2026-07-19 02:32:36] === SELECTED SCHEMATIC DETAILS ===
+[2026-07-19 02:32:36] Name: Ma base
+[2026-07-19 02:32:36] File: ma-base.palschem
+[2026-07-19 02:32:36] Path: D:/Steam/steamapps/common/Palworld/Mods/NativeMods/UE4SS/Mods/PalSchematica/Schematics/ma-base.palschem
+[2026-07-19 02:32:36] Status: COMPATIBLE
+[2026-07-19 02:32:36] Size: 24167 bytes
+[2026-07-19 02:32:36] Format: PalSchematica v1
+[2026-07-19 02:32:36] Author: Elias
+[2026-07-19 02:32:36] Created at: 2026-07-18T16:42:38.236935Z
+[2026-07-19 02:32:36] Pieces: 44 | compatible=44 | unknown=0
+[2026-07-19 02:32:36] --- CONSTRUCTION COUNTS ---
+[2026-07-19 02:32:36] BP_BuildObject_Wood_DiagonalWall_C = 2
+[2026-07-19 02:32:36] BP_BuildObject_Wood_DoorWall_C = 2
+[2026-07-19 02:32:36] BP_BuildObject_Wood_Fence_C = 2
+[2026-07-19 02:32:36] BP_BuildObject_Wood_Foundation_C = 6
+[2026-07-19 02:32:36] BP_BuildObject_Wood_Pillar_C = 1
+[2026-07-19 02:32:36] BP_BuildObject_Wood_PyramidRoof_C = 1
+[2026-07-19 02:32:36] BP_BuildObject_Wood_Roof_C = 3
+[2026-07-19 02:32:36] BP_BuildObject_Wood_SlantedRoof_C = 1
+[2026-07-19 02:32:36] BP_BuildObject_Wood_SlopedRoofCornerReverse_C = 2
+[2026-07-19 02:32:36] BP_BuildObject_Wood_SlopedRoofCorner_C = 1
+[2026-07-19 02:32:36] BP_BuildObject_Wood_Stair_C = 3
+[2026-07-19 02:32:36] BP_BuildObject_Wood_TriangleRoof_C = 3
+[2026-07-19 02:32:36] BP_BuildObject_Wood_TriangleStairsCorner_C = 1
+[2026-07-19 02:32:36] BP_BuildObject_Wood_TriangleWallReverse_C = 4
+[2026-07-19 02:32:36] BP_BuildObject_Wood_TriangleWall_C = 4
+[2026-07-19 02:32:36] BP_BuildObject_Wood_WallGate_C = 2
+[2026-07-19 02:32:36] BP_BuildObject_Wood_Wall_V2_C = 4
+[2026-07-19 02:32:36] BP_BuildObject_Wood_WindowWall_C = 2
+[2026-07-19 02:32:36] Materials: unavailable until the Palworld recipe catalog is generated.
+[2026-07-19 02:32:36] ==================================
+[2026-07-19 02:32:36] Selected schematic ready. Press F6 to show/hide it.
+[2026-07-19 02:34:04] Full schematic preview destroyed: 46 actor(s)

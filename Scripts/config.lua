@@ -11,8 +11,9 @@ return {
         manifest_format_version = 1,
     },
 
-    diagnostics = {
-        maximum_logged_files = 200,
+    ui = {
+        library_duration_seconds = 9.0,
+        notification_duration_seconds = 4.0,
     },
 
     full_preview = {
@@ -23,7 +24,7 @@ return {
     },
 
     keys = {
-        run_lfs_test = Key.F10,
+        manage_library = Key.F10,
         toggle_preview = Key.F6,
         delete_selected = Key.F8,
     },

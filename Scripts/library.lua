@@ -18,73 +18,116 @@ local function basename(path)
     return path:match("([^\\/]+)$") or path
 end
 
-local function list_files_from_index(directory, config)
-    local index_path =
-        directory
-        .. config.library.index_filename
+local function read_manifest(config)
+    local directory =
+        storage.get_schematics_directory()
 
-    local file = io.open(index_path, "r")
+    local manifest_path =
+        directory
+        .. config.library.manifest_filename
+
+    local file = io.open(manifest_path, "rb")
 
     if not file then
         return nil,
-            "Missing library index: "
-            .. tostring(index_path)
+            "Native manifest not found: "
+            .. tostring(manifest_path)
+            .. ". Ensure PalSchematicaFilesystem is enabled."
+    end
+
+    local content = file:read("*a")
+    file:close()
+
+    local decode_ok, document = pcall(function()
+        return json.decode(content)
+    end)
+
+    if not decode_ok or type(document) ~= "table" then
+        return nil,
+            "Invalid library manifest JSON: "
+            .. tostring(document)
+    end
+
+    if document.format
+        ~= config.library.manifest_format
+    then
+        return nil,
+            "Unexpected manifest format: "
+            .. tostring(document.format)
+    end
+
+    if document.formatVersion
+        ~= config.library.manifest_format_version
+    then
+        return nil,
+            "Unsupported manifest version: "
+            .. tostring(document.formatVersion)
+    end
+
+    if type(document.schematics) ~= "table" then
+        return nil,
+            "Manifest schematics must be an array"
+    end
+
+    return document, nil
+end
+
+local function list_palschem_files(config)
+    local manifest, manifest_error =
+        read_manifest(config)
+
+    if not manifest then
+        return nil, manifest_error
     end
 
     local filenames = {}
-
-    for line in file:lines() do
-        local trimmed =
-            line:match("^%s*(.-)%s*$")
-
-        if trimmed
-            and trimmed ~= ""
-            and trimmed:sub(1, 1) ~= "#"
-        then
-            filenames[
-                #filenames + 1
-            ] = basename(trimmed)
-        end
-    end
-
-    file:close()
-
-    local filtered = {}
     local seen = {}
 
-    for _, filename in ipairs(filenames) do
-        local extension =
-            file_extension(filename)
+    for _, record in ipairs(
+        manifest.schematics
+    ) do
+        local filename = nil
 
-        if extension
-            and extension:lower() == "palschem"
-            and not seen[filename:lower()]
+        if type(record) == "table" then
+            filename = record.file
+        elseif type(record) == "string" then
+            filename = record
+        end
+
+        if type(filename) == "string"
+            and filename ~= ""
         then
-            seen[filename:lower()] = true
-            filtered[#filtered + 1] =
-                filename
+            filename = basename(filename)
+
+            local extension =
+                file_extension(filename)
+
+            if extension
+                and extension:lower()
+                    == "palschem"
+                and not seen[
+                    filename:lower()
+                ]
+            then
+                seen[filename:lower()] =
+                    true
+
+                filenames[
+                    #filenames + 1
+                ] = filename
+            end
         end
     end
 
     table.sort(
-        filtered,
+        filenames,
         function(left, right)
             return left:lower()
                 < right:lower()
         end
     )
 
-    return filtered, nil
-end
-
-local function list_palschem_files(config)
-    local directory =
-        storage.get_schematics_directory()
-
-    return list_files_from_index(
-        directory,
-        config
-    )
+    return filenames, nil
 end
 
 local function get_file_size(path)
@@ -482,6 +525,43 @@ end
 
 function library.get_selected()
     return entries[selected_index]
+end
+
+function library.get_view_model()
+    local entry = library.get_selected()
+
+    if not entry then
+        return {
+            count = #entries,
+            selected_index = 0,
+        }
+    end
+
+    local metadata =
+        entry.document
+        and entry.document.metadata
+        or {}
+
+    return {
+        count = #entries,
+        selected_index = selected_index,
+        filename = entry.filename,
+        display_name = entry.display_name,
+        status = entry.status,
+        size_bytes = entry.size_bytes,
+        piece_count = entry.analysis
+            and entry.analysis.piece_count
+            or 0,
+        compatible_piece_count = entry.analysis
+            and entry.analysis.compatible_piece_count
+            or 0,
+        unknown_piece_count = entry.analysis
+            and entry.analysis.unknown_piece_count
+            or 0,
+        author = metadata.author,
+        created_at = metadata.createdAt,
+        error = entry.error,
+    }
 end
 
 function library.select_previous()

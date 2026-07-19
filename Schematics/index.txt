@@ -1,3 +1,0 @@
-# PalSchematica library index - generated automatically
-ma-base.palschem
-wood-test-base.palschem
