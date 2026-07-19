@@ -1,1 +1,0 @@
-Rename the compiled PalSchematicaFilesystem DLL to main.dll and place it here.

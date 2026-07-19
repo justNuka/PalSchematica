@@ -2,371 +2,287 @@ local ui = {}
 
 local logger = require("logger")
 
-local cached_controller = nil
-local cached_kismet_system_library = nil
-local successful_backend = nil
+local state = {
+    widget = nil,
+    tree = nil,
+    canvas = nil,
+    border = nil,
+    text = nil,
+    opened = false,
+}
 
-local function is_valid_object(object)
-    if object == nil then
-        return false
-    end
+local function valid(object)
+    if object == nil then return false end
+    local ok, result = pcall(function() return object:IsValid() end)
+    return not ok or result == true
+end
 
-    local ok, valid = pcall(function()
-        return object:IsValid()
+local function find(path)
+    local ok, object = pcall(function() return StaticFindObject(path) end)
+    if ok and valid(object) then return object end
+    return nil
+end
+
+local function construct(class_object, outer)
+    if not class_object then return nil end
+    local ok, object = pcall(function()
+        return StaticConstructObject(class_object, outer)
     end)
-
-    if ok then
-        return valid == true
-    end
-
-    return true
+    if ok and valid(object) then return object end
+    return nil
 end
 
 local function resolve_controller()
-    if is_valid_object(cached_controller) then
-        return cached_controller
+    for _, name in ipairs({"BP_PalPlayerController_C", "PalPlayerController", "PlayerController"}) do
+        local ok, controller = pcall(function() return FindFirstOf(name) end)
+        if ok and valid(controller) then return controller end
     end
-
-    local controller_class_candidates = {
-        "BP_PalPlayerController_C",
-        "PalPlayerController",
-        "PlayerController",
-    }
-
-    for _, class_name in ipairs(controller_class_candidates) do
-        local ok, controller = pcall(function()
-            return FindFirstOf(class_name)
-        end)
-
-        if ok and is_valid_object(controller) then
-            cached_controller = controller
-            logger.log(
-                "In-game UI controller resolved through "
-                .. tostring(class_name)
-            )
-            return controller
-        end
-    end
-
-    local player_class_candidates = {
-        "BP_Player_Female_C",
-        "BP_Player_Male_C",
-        "BP_PlayerBase_C",
-    }
-
-    for _, class_name in ipairs(player_class_candidates) do
-        local ok, player = pcall(function()
-            return FindFirstOf(class_name)
-        end)
-
-        if ok and is_valid_object(player) then
-            local controller = nil
-
-            local property_ok = pcall(function()
-                controller = player.Controller
-            end)
-
-            if property_ok and is_valid_object(controller) then
-                cached_controller = controller
-                logger.log(
-                    "In-game UI controller resolved from player "
-                    .. tostring(class_name)
-                )
-                return controller
-            end
-
-            local method_ok = pcall(function()
-                controller = player:GetController()
-            end)
-
-            if method_ok and is_valid_object(controller) then
-                cached_controller = controller
-                logger.log(
-                    "In-game UI controller resolved with GetController from "
-                    .. tostring(class_name)
-                )
-                return controller
-            end
-        end
-    end
-
     return nil
 end
 
-local function resolve_kismet_system_library()
-    if is_valid_object(cached_kismet_system_library) then
-        return cached_kismet_system_library
+local function make_margin(left, top, right, bottom)
+    if type(FMargin) == "function" then
+        local ok, margin = pcall(function() return FMargin(left, top, right, bottom) end)
+        if ok then return margin end
     end
-
-    local paths = {
-        "/Script/Engine.Default__KismetSystemLibrary",
-        "/Script/Engine.KismetSystemLibrary",
-    }
-
-    for _, path in ipairs(paths) do
-        local ok, object = pcall(function()
-            return StaticFindObject(path)
-        end)
-
-        if ok and is_valid_object(object) then
-            cached_kismet_system_library = object
-            logger.log(
-                "In-game HUD KismetSystemLibrary resolved: "
-                .. tostring(path)
-            )
-            return object
-        end
-    end
-
-    return nil
+    return { Left = left, Top = top, Right = right, Bottom = bottom }
 end
 
-local function make_color()
+local function make_color(r, g, b, a)
     if type(FLinearColor) == "function" then
-        local ok, color = pcall(function()
-            return FLinearColor(0.15, 0.85, 1.0, 1.0)
+        local ok, color = pcall(function() return FLinearColor(r, g, b, a) end)
+        if ok then return color end
+    end
+    return { R = r, G = g, B = b, A = a }
+end
+
+local function set_text(text_widget, value)
+    if not valid(text_widget) then return false end
+    local attempts = {
+        function() text_widget:SetText(FText(value)) end,
+        function() text_widget.Text = FText(value) end,
+        function() text_widget:SetText(value) end,
+    }
+    for _, attempt in ipairs(attempts) do
+        if pcall(attempt) then return true end
+    end
+    return false
+end
+
+local function set_visible(widget, visible)
+    if not valid(widget) then return end
+    local visibility = visible and 0 or 2 -- Visible / Collapsed
+    pcall(function() widget:SetVisibility(visibility) end)
+end
+
+local function destroy_widget()
+    if valid(state.widget) then
+        pcall(function() state.widget:RemoveFromParent() end)
+    end
+    state.widget = nil
+    state.tree = nil
+    state.canvas = nil
+    state.border = nil
+    state.text = nil
+    state.opened = false
+end
+
+local function create_widget()
+    if valid(state.widget) then return true end
+
+    local controller = resolve_controller()
+    if not controller then
+        logger.log("UMG menu creation failed: PlayerController not found")
+        return false
+    end
+
+    local c_user_widget = find("/Script/UMG.UserWidget")
+    local c_widget_tree = find("/Script/UMG.WidgetTree")
+    local c_canvas = find("/Script/UMG.CanvasPanel")
+    local c_border = find("/Script/UMG.Border")
+    local c_text = find("/Script/UMG.TextBlock")
+    local widget_library = find("/Script/UMG.Default__WidgetBlueprintLibrary")
+
+    if not (c_user_widget and c_widget_tree and c_canvas and c_text) then
+        logger.log("UMG menu creation failed: one or more UMG classes are unavailable")
+        return false
+    end
+
+    local widget = nil
+    if widget_library then
+        pcall(function()
+            widget = widget_library:Create(controller, c_user_widget, controller)
         end)
-
-        if ok then
-            return color
-        end
+    end
+    if not valid(widget) then
+        widget = construct(c_user_widget, controller)
+    end
+    if not valid(widget) then
+        logger.log("UMG menu creation failed: UserWidget could not be created")
+        return false
     end
 
-    return {
-        R = 0.15,
-        G = 0.85,
-        B = 1.0,
-        A = 1.0,
-    }
-end
-
-local function send_print_string(controller, message, duration)
-    local library = resolve_kismet_system_library()
-
-    if not library then
-        return false, "KismetSystemLibrary not found"
+    local tree = construct(c_widget_tree, widget)
+    local canvas = construct(c_canvas, tree)
+    local text = construct(c_text, tree)
+    if not (valid(tree) and valid(canvas) and valid(text)) then
+        logger.log("UMG menu creation failed: widget tree objects could not be created")
+        pcall(function() widget:RemoveFromParent() end)
+        return false
     end
 
-    local color = make_color()
-    local key = FName("PalSchematicaLibrary")
+    pcall(function() widget.WidgetTree = tree end)
+    pcall(function() tree.RootWidget = canvas end)
 
-    local attempts = {
-        function()
-            library:PrintString(
-                controller,
-                message,
-                true,
-                false,
-                color,
-                duration,
-                key
-            )
-        end,
-        function()
-            library:PrintString(
-                controller,
-                message,
-                true,
-                true,
-                color,
-                duration,
-                key
-            )
-        end,
-        function()
-            library:PrintString(
-                controller,
-                message,
-                true,
-                false
-            )
-        end,
-    }
-
-    local last_error = nil
-
-    for index, attempt in ipairs(attempts) do
-        local ok, error_message = pcall(attempt)
-
-        if ok then
-            if successful_backend ~= "PrintString" then
-                successful_backend = "PrintString"
-                logger.log(
-                    "In-game HUD backend active: Kismet PrintString attempt "
-                    .. tostring(index)
-                )
+    local content_parent = canvas
+    local border = nil
+    if c_border then
+        border = construct(c_border, tree)
+        if valid(border) then
+            local border_slot = nil
+            pcall(function() border_slot = canvas:AddChild(border) end)
+            if valid(border_slot) then
+                pcall(function() border_slot:SetPosition({X = 36.0, Y = 100.0}) end)
+                pcall(function() border_slot:SetSize({X = 590.0, Y = 410.0}) end)
+                pcall(function() border_slot:SetAnchors({Minimum={X=0.0,Y=0.0}, Maximum={X=0.0,Y=0.0}}) end)
             end
-            return true, nil
+            pcall(function() border:SetBrushColor(make_color(0.015, 0.025, 0.04, 0.94)) end)
+            pcall(function() border:SetPadding(make_margin(22, 18, 22, 18)) end)
+            pcall(function() border:SetContent(text) end)
+            content_parent = border
         end
-
-        last_error = error_message
     end
 
-    return false, last_error
+    if content_parent == canvas then
+        local text_slot = nil
+        pcall(function() text_slot = canvas:AddChild(text) end)
+        if valid(text_slot) then
+            pcall(function() text_slot:SetPosition({X = 48.0, Y = 112.0}) end)
+            pcall(function() text_slot:SetSize({X = 550.0, Y = 380.0}) end)
+        end
+    end
+
+    pcall(function() text:SetColorAndOpacity(make_color(0.88, 0.96, 1.0, 1.0)) end)
+    pcall(function() text:SetAutoWrapText(true) end)
+    pcall(function() text:SetJustification(0) end)
+    pcall(function() text:SetMinDesiredWidth(520.0) end)
+
+    local added = pcall(function() widget:AddToViewport(10000) end)
+    if not added then
+        logger.log("UMG menu creation failed: AddToViewport failed")
+        return false
+    end
+
+    state.widget = widget
+    state.tree = tree
+    state.canvas = canvas
+    state.border = border
+    state.text = text
+    state.opened = true
+    set_visible(widget, true)
+    logger.log("Native UMG library panel created and added to viewport")
+    return true
 end
 
-local function send_client_message(controller, message, duration)
-    local attempts = {
-        function()
-            controller:ClientMessage(
-                message,
-                FName("PalSchematica"),
-                duration
-            )
-        end,
-        function()
-            controller:ClientMessage(
-                message,
-                "PalSchematica",
-                duration
-            )
-        end,
-        function()
-            controller:ClientMessage(message)
-        end,
+local function format_library(view, preview_visible)
+    if not view or not view.selected then
+        return table.concat({
+            "PALSCHEMATICA",
+            "",
+            "No compatible schematic found.",
+            "",
+            "F10  Refresh / close",
+        }, "\n")
+    end
+
+    local selected = view.selected
+    local lines = {
+        "PALSCHEMATICA  •  LIBRARY OPEN",
+        "────────────────────────────────────────",
+        string.format("Selected  %d / %d", view.selected_index or 1, view.count or 1),
+        "",
+        tostring(selected.name or selected.file or "Unnamed schematic"),
+        tostring(selected.file or ""),
+        "",
+        string.format("Status      %s", tostring(selected.status or "UNKNOWN")),
+        string.format("Pieces      %s", tostring(selected.piece_count or selected.pieces or "?")),
+        string.format("Author      %s", tostring(selected.author or "Unknown")),
+        string.format("Preview     %s", preview_visible and "VISIBLE" or "HIDDEN"),
+        "",
+        "F10  Next schematic / close with Shift+F10",
+        "F6   Show or hide preview",
+        "F8   Delete (press twice)",
     }
-
-    local last_error = nil
-
-    for index, attempt in ipairs(attempts) do
-        local ok, error_message = pcall(attempt)
-
-        if ok then
-            if successful_backend ~= "ClientMessage" then
-                successful_backend = "ClientMessage"
-                logger.log(
-                    "In-game HUD fallback active: ClientMessage attempt "
-                    .. tostring(index)
-                )
-            end
-            return true, nil
-        end
-
-        last_error = error_message
-    end
-
-    return false, last_error
+    return table.concat(lines, "\n")
 end
 
-function ui.show(message, duration)
+function ui.open_library(view, config, preview_visible)
     ExecuteInGameThread(function()
-        local controller = resolve_controller()
-
-        if not controller then
-            logger.log(
-                "In-game UI unavailable: local PlayerController not found"
-            )
-            return
-        end
-
-        local text = tostring(message)
-        local seconds = tonumber(duration) or 6.0
-
-        local print_ok, print_error =
-            send_print_string(controller, text, seconds)
-
-        if print_ok then
-            return
-        end
-
-        logger.log(
-            "Kismet PrintString failed, trying ClientMessage: "
-            .. tostring(print_error)
-        )
-
-        local client_ok, client_error =
-            send_client_message(controller, text, seconds)
-
-        if not client_ok then
-            cached_controller = nil
-            cached_kismet_system_library = nil
-            logger.log(
-                "All in-game UI backends failed: "
-                .. tostring(client_error)
-            )
-        end
+        if not create_widget() then return end
+        state.opened = true
+        set_visible(state.widget, true)
+        set_text(state.text, format_library(view, preview_visible))
     end)
 end
 
-local function format_status(status)
-    if status == "compatible" then
-        return "OK"
-    elseif status == "partial" then
-        return "PARTIAL"
-    end
+function ui.update_library(view, config, preview_visible)
+    ExecuteInGameThread(function()
+        if not valid(state.widget) then
+            if not create_widget() then return end
+        end
+        state.opened = true
+        set_visible(state.widget, true)
+        set_text(state.text, format_library(view, preview_visible))
+    end)
+end
 
-    return "INVALID"
+function ui.close_library()
+    ExecuteInGameThread(function()
+        if valid(state.widget) then set_visible(state.widget, false) end
+        state.opened = false
+        logger.log("Native UMG library panel closed")
+    end)
+end
+
+function ui.toggle_library(view, config, preview_visible)
+    if state.opened then
+        ui.close_library()
+        return false
+    end
+    ui.open_library(view, config, preview_visible)
+    return true
+end
+
+function ui.is_open()
+    return state.opened
+end
+
+function ui.show(message, duration)
+    -- Reuse the permanent panel instead of Shipping-disabled PrintString.
+    ExecuteInGameThread(function()
+        if not valid(state.widget) then
+            if not create_widget() then return end
+        end
+        state.opened = true
+        set_visible(state.widget, true)
+        set_text(state.text, "PALSCHEMATICA\n\n" .. tostring(message))
+    end)
 end
 
 function ui.show_library(view, config, preview_visible)
-    local lines = {
-        "=== PALSCHEMATICA LIBRARY ===",
-    }
-
-    if not view or view.count == 0 then
-        lines[#lines + 1] = "No .palschem file found"
-        lines[#lines + 1] = "F10 refresh | F6 preview"
-        ui.show(
-            table.concat(lines, "\n"),
-            config.ui.library_duration_seconds
-        )
-        return
-    end
-
-    lines[#lines + 1] = string.format(
-        "[%d/%d] %s",
-        view.selected_index,
-        view.count,
-        tostring(view.display_name)
-    )
-
-    lines[#lines + 1] = string.format(
-        "%s | %d pieces",
-        format_status(view.status),
-        tonumber(view.piece_count) or 0
-    )
-
-    lines[#lines + 1] = tostring(view.filename)
-
-    if view.author and view.author ~= "" then
-        lines[#lines + 1] =
-            "Author: " .. tostring(view.author)
-    end
-
-    lines[#lines + 1] =
-        preview_visible
-        and "Preview: VISIBLE"
-        or "Preview: HIDDEN"
-
-    lines[#lines + 1] =
-        "F10 next | F6 preview | F8 x2 delete"
-
-    ui.show(
-        table.concat(lines, "\n"),
-        config.ui.library_duration_seconds
-    )
+    ui.update_library(view, config, preview_visible)
 end
 
 function ui.show_preview_state(visible, view, config)
-    local name = view
-        and view.display_name
-        or "No schematic"
-
-    local message = visible
-        and ("Preview shown: " .. tostring(name))
-        or ("Preview hidden: " .. tostring(name))
-
-    ui.show(
-        message,
-        config.ui.notification_duration_seconds
-    )
+    ui.update_library(view, config, visible)
 end
 
 function ui.show_delete_message(message, config)
-    ui.show(
-        tostring(message),
-        config.ui.notification_duration_seconds
-    )
+    ui.show(tostring(message), 8)
+end
+
+function ui.destroy()
+    ExecuteInGameThread(destroy_widget)
 end
 
 return ui

@@ -94,24 +94,17 @@ RegisterKeyBind(
     config.keys.manage_library,
     function()
         if not library_opened then
-            logger.log(
-                "In-game library opened/refreshed"
-            )
-
+            logger.log("In-game library opened/refreshed")
             library_opened = true
-            refresh_library(true)
+            refresh_library(false)
+            ui.open_library(current_view(), config, preview_visible)
             return
         end
 
-        local _, select_error =
-            library.select_next()
-
+        local _, select_error = library.select_next()
         if select_error then
             logger.log(select_error)
-            ui.show(
-                tostring(select_error),
-                config.ui.notification_duration_seconds
-            )
+            ui.show(tostring(select_error), config.ui.notification_duration_seconds)
             return
         end
 
@@ -122,7 +115,8 @@ RegisterKeyBind(
             end)
         end
 
-        load_selected(true)
+        load_selected(false)
+        ui.update_library(current_view(), config, preview_visible)
     end
 )
 
@@ -212,7 +206,7 @@ RegisterKeyBind(
 logger.clear()
 
 logger.log(
-    "Loaded successfully - Phase 9B visible in-game library HUD"
+    "Loaded successfully - Phase 9C native UMG in-game library"
 )
 
 logger.log(
